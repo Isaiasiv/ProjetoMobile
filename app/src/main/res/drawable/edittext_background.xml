@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#E3EAFD" /> <!-- Fundo azul claro -->
+        <stroke
+            android:width="2dp"
+            android:color="#D6D6D6" /> <!-- Borda cinza -->
+        <corners android:radius="12dp" /> <!-- Cantos arredondados -->
+    </shape>
+
+</selector>
