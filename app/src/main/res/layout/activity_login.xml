@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.login.Login">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +22,7 @@
         android:id="@+id/imageViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@+id/textViewLogin"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin"
@@ -25,6 +35,8 @@
         android:layout_marginTop="40dp"
         android:text="Login"
         android:textSize="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,21 +52,77 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewLogin" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/editTextPassword"
+        style="@style/BolhaDeCaixa"
+        android:drawableRight="@drawable/ic_senha"
         android:ems="10"
+        android:hint="senha"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="497dp" />
+        android:maxLength="30"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogin"
+        app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
+        app:layout_constraintStart_toEndOf="@+id/ContainerComponents" />
 
     <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/BolhaDeCaixa"
+        android:id="@+id/editTextLogin"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="405dp" />
+        android:drawableRight="@drawable/ic_login"
+        android:hint="E-mail"
+        app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
+        app:layout_constraintStart_toEndOf="@+id/ContainerComponents"
+        app:layout_constraintTop_toTopOf="@+id/ContainerComponents"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonEntrar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        style="@style/button"
+        android:text="@string/entrar"
+        app:layout_constraintStart_toEndOf="@+id/ContainerComponents"
+        app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContainerComponents"
+        />
+
+    <TextView
+        android:id="@+id/textCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_cadastro"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/progressbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/button"
+        android:id="@+id/buttonEntrarGmail"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="@string/entrar_gmail"
+        app:layout_constraintStart_toEndOf="@+id/ContainerComponents"
+        app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
+        app:layout_constraintTop_toBottomOf="@+id/textCadastro" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

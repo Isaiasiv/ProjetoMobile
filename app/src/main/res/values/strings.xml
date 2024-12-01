@@ -3,4 +3,10 @@
     <string name="value">
         Value
     </string>
+    <string name="entrar">\Entrar</string>
+    <string name="text_cadastro">Crie uma conta</string>
+    <string name="entrar_gmail">Entrar com o gmail</string>
+    <string name="title_cadastro">Faça seu Cadastro</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="Sair_Da_Conta">Sair da Conta</string>
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383760404289",
+    "project_id": "foca-nos-estudos-fne",
+    "storage_bucket": "foca-nos-estudos-fne.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383760404289:android:53c8e3eb961fc266d15bc0",
+        "android_client_info": {
+          "package_name": "com.example.projetomobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqlJq05b61edBudXkP3HeZao6ODDYIaFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
