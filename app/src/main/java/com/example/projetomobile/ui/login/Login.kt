@@ -2,48 +2,107 @@ package com.example.projetomobile.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
+import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.core.View
 
 class Login : AppCompatActivity() {
 
     private lateinit var textTelaCadastro: TextView
+    private lateinit var EditTextEmail: EditText
+    private lateinit var EditTextPassword: EditText
+    private lateinit var progressBar: ProgressBar
+    private lateinit var buttonEntrar: Button
+    private lateinit var buttonLoginGmail: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+        iniciarComponents()
 
-        // Configurar margens para as barras do sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Inicializar os componentes
-        iniciarComponents()
+        buttonEntrar.setOnClickListener {
+            val email = EditTextEmail.text.toString()
+            val senha = EditTextPassword.text.toString()
 
-        // Configurar o clique no TextView
+            if (email.isEmpty() || senha.isEmpty()) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Informe um email válido!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
+                        // Tornar o ProgressBar visível
+                        progressBar.visibility = android.view.View.VISIBLE
+
+                        // Usar Handler para atraso
+                        android.os.Handler(Looper.getMainLooper()).postDelayed({
+                            TelaPrincipal()
+                        }, 3000) // 3 segundos de atraso
+                    } else {
+                        Toast.makeText(this, "Erro ao realizar login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+        }
+
         configurarCliqueCadastro()
     }
 
-    // Inicializar os componentes
-    private fun iniciarComponents() {
-        textTelaCadastro = findViewById(R.id.textCadastro)
+    override fun onStart() {
+        super.onStart()
+
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null) {
+            TelaPrincipal()
+        }
     }
 
-    // Configurar ação para o clique do TextView
+    private fun TelaPrincipal() {
+        val intent = Intent(this, PerfilActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun iniciarComponents() {
+        textTelaCadastro = findViewById(R.id.textCadastro)
+        EditTextEmail = findViewById(R.id.editTextLogin)
+        EditTextPassword = findViewById(R.id.editTextPassword)
+        buttonEntrar = findViewById(R.id.buttonEntrar)
+        buttonLoginGmail = findViewById(R.id.buttonEntrarGmail)
+        progressBar = findViewById(R.id.progressbar)
+    }
+
     private fun configurarCliqueCadastro() {
         textTelaCadastro.setOnClickListener {
-            val intent = Intent(this@Login, Cadastro::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, Cadastro::class.java))
         }
     }
 }
