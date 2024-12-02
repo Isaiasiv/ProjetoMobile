@@ -15,8 +15,6 @@ import com.example.projetomobile.R
 import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.core.View
 
 class Login : AppCompatActivity() {
 
