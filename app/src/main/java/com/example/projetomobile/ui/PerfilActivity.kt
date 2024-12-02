@@ -11,12 +11,17 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
 import com.example.projetomobile.ui.login.Login
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class PerfilActivity : AppCompatActivity() {
 
     private lateinit var nomeTextView: TextView
     private lateinit var emailTextView: TextView
     private lateinit var buttonDeslogar: Button
+
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var usuarioID: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,22 @@ class PerfilActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val email = currentUser?.email
+        usuarioID = currentUser?.uid ?: return // Retorna se o usuário for nulo
+
+        val documentReference = db.collection("Usuarios").document(usuarioID)
+        documentReference.addSnapshotListener { documentSnapshot, error ->
+            if (error != null) {
+                // Lidar com o erro, se necessário
+                return@addSnapshotListener
+            }
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                nomeTextView.text = documentSnapshot.getString("Usuario")
+                emailTextView.text = email
+            }
+        }
     }
 
     private fun iniciarComponents() {
