@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_home">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/homePrincipalFragment">
 
+    <fragment
+        android:id="@+id/homePrincipalFragment"
+        android:name="com.example.projetomobile.ui.home.ui.menuInferior.HomePrincipalFragment"
+        android:label="fragment_home_principal"
+        tools:layout="@layout/fragment_home_principal" />
+    <fragment
+        android:id="@+id/page_favoritos"
+        android:name="com.example.projetomobile.ui.home.ui.menuInferior.FavoritosFragment"
+        android:label="fragment_favoritos"
+        tools:layout="@layout/fragment_favoritos" />
+    <fragment
+        android:id="@+id/page_materias"
+        android:name="com.example.projetomobile.ui.home.ui.menuInferior.MateriasFragment"
+        android:label="fragment_materias"
+        tools:layout="@layout/fragment_materias" />
+    <fragment
+        android:id="@+id/page_busca"
+        android:name="com.example.projetomobile.ui.home.ui.menuInferior.BuscaFragment"
+        android:label="fragment_busca"
+        tools:layout="@layout/fragment_busca" />
 </navigation>

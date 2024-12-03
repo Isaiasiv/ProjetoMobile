@@ -2,24 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/page_home"
-        android:enabled="true"
+        android:id="@+id/homePrincipalFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/menu_inferior_home"/>
     <item
         android:id="@+id/page_favoritos"
-        android:enabled="true"
         android:icon="@drawable/ic_coracao"
         android:title="@string/menu_inferior_favoritos"/>
     <item
         android:id="@+id/page_materias"
-        android:enabled="true"
         android:icon="@drawable/ic_livro"
         android:title="@string/menu_inferior_materias"/>
     <item
-        android:id="@+id/page_1"
-        android:enabled="true"
+        android:id="@+id/page_busca"
         android:icon="@drawable/ic_lupa"
-        android:title="@string/menu_inferior_ajuda"/>
+        android:title="@string/menu_inferior_busca"/>
 
 </menu>
