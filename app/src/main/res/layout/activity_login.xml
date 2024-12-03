@@ -80,7 +80,7 @@
         android:id="@+id/buttonEntrar"
         android:textColor="@color/white"
         android:textStyle="bold"
-        style="@style/buttonPequeno"
+        style="@style/button"
         android:text="@string/entrar"
         app:layout_constraintStart_toEndOf="@+id/ContainerComponents"
         app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
