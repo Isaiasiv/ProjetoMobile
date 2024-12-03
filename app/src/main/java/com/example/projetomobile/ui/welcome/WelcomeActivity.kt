@@ -1,7 +1,10 @@
 package com.example.projetomobile.ui.welcome
 
 import android.os.Bundle
+<<<<<<< HEAD
 import android.view.View
+=======
+>>>>>>> a68ceb5 (teste)
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,10 +20,15 @@ class WelcomeActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+<<<<<<< HEAD
             //atribuir um evento ao click do botão para ir a proxima tela
         }
     }
 
     fun onClickNext(view: View) {}
     //adicionar a estrutura do botão da seta
+=======
+        }
+    }
+>>>>>>> a68ceb5 (teste)
 }
