@@ -3,10 +3,7 @@
     <string name="value">
         Value
     </string>
-    <string name="entrar">\Entrar</string>
-    <string name="text_cadastro">Crie uma conta</string>
-    <string name="entrar_gmail">Entrar com o gmail</string>
-    <string name="title_cadastro">Faça seu Cadastro</string>
+
     <string name="cadastrar">Cadastrar</string>
     <string name="Sair_Da_Conta">Sair da Conta</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -16,6 +13,25 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: tela de Login textos -->
+
+    <string name="entrar">\Entrar</string>
+    <string name="text_cadastro">Crie uma conta</string>
+    <string name="entrar_gmail">Entrar com o gmail</string>
+
+    <!-- TODO: tela de cadastro textos -->
+
+    <string name="title_cadastro">Faça seu Cadastro</string>
+
+    <!-- TODO: menu inferior textos -->
+
+    <string name="menu_inferior_home">Home</string>
+    <string name="menu_inferior_favoritos">Favoritos</string>
+    <string name="menu_inferior_materias">Materias</string>
+    <string name="menu_inferior_ajuda">Ajuda</string>
+
+    <!-- TODO: submenu lateral textos -->
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

@@ -2,6 +2,7 @@ package com.example.projetomobile.ui.cadastro
 
 import SalvarUsuarioUseCase
 import UsuarioRepository
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.projetomobile.R
 import com.example.projetomobile.domain.CadastroValidator
 import com.example.projetomobile.data.FirebaseAuthService
+import com.example.projetomobile.ui.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Cadastro : AppCompatActivity() {
@@ -55,6 +57,11 @@ class Cadastro : AppCompatActivity() {
         radioButtonTemosDeUso.setOnCheckedChangeListener { _, _ -> verificarSelecao() }
         radioButtonTermosPrivacidade.setOnCheckedChangeListener { _, _ -> verificarSelecao() }
     }
+    private fun TelaPrincipal() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     private fun verificarSelecao() {
         buttonCadastrar.isEnabled =
@@ -91,6 +98,7 @@ class Cadastro : AppCompatActivity() {
                 salvarDadosDoUsuario()
                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
                 // Aqui você pode redirecionar para outra tela
+                TelaPrincipal()
             } else {
                 Toast.makeText(this, erro?.message ?: "Erro ao cadastrar o usuário.", Toast.LENGTH_SHORT).show()
             }
