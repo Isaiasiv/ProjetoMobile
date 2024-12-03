@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
 import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
+import com.example.projetomobile.ui.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
@@ -84,7 +85,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun TelaPrincipal() {
-        val intent = Intent(this, PerfilActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
