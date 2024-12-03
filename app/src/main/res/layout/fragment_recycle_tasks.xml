@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.home.tasks.fragment_recycle_tasks">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="278dp"
+        android:layout_height="219dp"
+        android:id="@+id/recycleViewTasks2"
+        android:layout_marginTop="12dp"
+        />
+
+</FrameLayout>

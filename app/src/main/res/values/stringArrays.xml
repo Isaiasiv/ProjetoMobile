@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="desfocadoMsg">
+        <item>Você está desfocado, preste mais atenção na proxima vez</item>
+        <item>Oh não, sua tarefa está atrasada, preste mais atenção</item>
+        <item>Você me decepcionou atrasando a sua lição :(</item>
+        <item>Somos dois insatisfeitos, você atrasou a sua lição</item>
+        <item>Oh não, sua tarefa atrasou, bola para frente, sei que você consegue</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+
+<!--    <View-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        -->
+<!--        />-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageFavorite"
+        android:layout_marginLeft="5dp"
+        android:adjustViewBounds="true"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        app:srcCompat="@drawable/ic_menu_camera"
+        android:onClick="favoritar"/>
+
+    <TextView
+        android:id="@+id/task_materia"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textSize="17dp"
+        android:text="matematica"/>
+
+    <TextView
+        android:id="@+id/task_atividade"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textSize="17dp"
+        android:text="atividade 1" />
+
+    <TextView
+        android:id="@+id/task_data"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:textSize="17dp"
+        android:layout_weight="1"
+        android:text="13-07-24"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

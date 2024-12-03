@@ -39,4 +39,6 @@
     <string name="menu_perfil">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcomeText">Aqui você pode\ngerenciar seus estudos\nfacilmente.</string>
+    <string name="desfocadoMsg">Você está desfocado, preste mais\natenção na próxima vez</string>
 </resources>
