@@ -124,5 +124,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textCadastro" />
 
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/background_login_radial">
+
+        <!-- Outros componentes do layout -->
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
