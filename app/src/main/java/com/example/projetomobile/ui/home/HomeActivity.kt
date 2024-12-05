@@ -1,5 +1,6 @@
 package com.example.projetomobile.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projetomobile.R
 import com.example.projetomobile.databinding.ActivityHomeBinding
+import com.example.projetomobile.ui.materias.AddTarefaActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,9 +30,12 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarHome.toolbar)
 
         binding.appBarHome.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Abrindo tela de adicionar tarefa", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
+
+            // Chama o método para abrir a nova tela
+            ButtonFutuant()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -44,6 +49,12 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun ButtonFutuant() {
+        val intent = Intent(this, AddTarefaActivity::class.java)
+        startActivity(intent)
+        //finish()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

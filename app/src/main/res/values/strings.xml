@@ -31,6 +31,26 @@
     <string name="menu_inferior_materias">Materias</string>
     <string name="menu_inferior_busca">Busca</string>
 
+    <!-- TODO: tela de adicionar atividade -->
+
+    <string name="tela_add_atividade_titulo_principal">Criar Tarefa</string>
+    <string name="tela_add_atividade_nome_da_tarefa">Nome da tarefa</string>
+    <string name="tela_add_atividade_tarefa">Tarefa</string>
+    <string name="tela_add_atividade_prazo_da_tarefa">Prazo Da Tarefa</string>
+    <string name="tela_add_atividade_prazo_da_tarefa_inicial">Prazo Da Tarefa Inicial</string>
+    <string name="tela_add_atividade_prazo_da_tarefa_final">Prazo Da Tarefa Final</string>
+    <string name="tela_add_atividade_data_selecionada">Data Selecionada</string>
+    <string name="tela_add_atividade_titulo">Titulo</string>
+    <string name="tela_add_atividade_objetivo">Objetivo</string>
+    <string name="tela_add_atividade_descricao_da_tarefa">Descrição Da Tarefa</string>
+    <string name="tela_add_atividade_caixa_descricao_da_tarefa">Digite a descrição aqui</string>
+
+    <string name="tela_add_atividade_Img_mascote">mascote foca feliz</string>
+    <string name="tela_add_atividade_Button_final">Final</string>
+    <string name="tela_add_atividade_Button_inicial">Inicial</string>
+    <string name="tela_add_atividade_Button_salvar_tarefa">Salvar Tarefa</string>
+
+
     <!-- TODO: submenu lateral textos -->
 
     <string name="menu_home">Home</string>

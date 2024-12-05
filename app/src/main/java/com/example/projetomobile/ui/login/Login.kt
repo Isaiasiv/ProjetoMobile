@@ -15,6 +15,7 @@ import com.example.projetomobile.R
 import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
 import com.example.projetomobile.ui.home.HomeActivity
+import com.example.projetomobile.ui.materias.AddTarefaActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
@@ -63,6 +64,7 @@ class Login : AppCompatActivity() {
                         // Usar Handler para atraso
                         android.os.Handler(Looper.getMainLooper()).postDelayed({
                             TelaPrincipal()
+                            //ButtonFutuant()
                         }, 3000) // 3 segundos de atraso
                     } else {
                         Toast.makeText(this, "Erro ao realizar login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
@@ -81,6 +83,7 @@ class Login : AppCompatActivity() {
 
         if (usuarioAtual != null) {
             TelaPrincipal()
+            //ButtonFutuant()
         }
     }
 
@@ -88,6 +91,11 @@ class Login : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
+    }
+    private fun ButtonFutuant() {
+        val intent = Intent(this, AddTarefaActivity::class.java)
+        startActivity(intent)
+        //finish()
     }
 
     private fun iniciarComponents() {

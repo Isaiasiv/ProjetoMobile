@@ -56,6 +56,8 @@
         <item name="android:gravity">center</item>
         <!-- Margem opcional -->
         <item name="android:layout_margin">16dp</item>
+        <item name="android:textAllCaps">false</item>
+
     </style>
 
     <!-- Estilo para o texto acima da caixa de entrada -->
