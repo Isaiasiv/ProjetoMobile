@@ -37,8 +37,24 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_perfil">Perfil</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcomeText">Aqui você pode\ngerenciar seus estudos\nfacilmente.</string>
     <string name="desfocadoMsg">Você está desfocado, preste mais\natenção na próxima vez</string>
+
+
+    <!-- TODO: tela de adicionar atividade -->
+
+    <string name="tela_add_atividade_nome_da_tarefa">Nome da tarefa</string>
+    <string name="tela_add_atividade_tarefa">Tarefa</string>
+    <string name="tela_add_atividade_prazo_da_tarefa">Prazo Da Tarefa</string>
+    <string name="tela_add_atividade_prazo_da_tarefa_inicial">Prazo Da Tarefa Inicial</string>
+    <string name="tela_add_atividade_prazo_da_tarefa_final">Prazo Da Tarefa Final</string>
+    <string name="tela_add_atividade_titulo">Titulo</string>
+    <string name="tela_add_atividade_objetivo">Objetivo</string>
+    <string name="tela_add_atividade_descricao_da_tarefa">Descrição Da Tarefa</string>
+    <string name="tela_add_atividade_salvar_tarefa">Salvar Tarefa</string>
+
+
 </resources>
