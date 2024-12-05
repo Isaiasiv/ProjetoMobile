@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ui.materias.AddTarefaActivity">
+
+    <TextView
+        android:id="@+id/textViewTitulo"
+        style="@style/TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="criar atividade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/button"
+        android:layout_marginTop="20dp"
+        android:text="Salvar Tarefa"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNomeTarefa"
+        app:layout_constraintStart_toStartOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMultiLineDescricao" />
+
+    <EditText
+        android:id="@+id/editTextNomeTarefa"
+        style="@style/BolhaDeCaixa"
+        android:layout_marginTop="69dp"
+        android:drawableRight="@drawable/ic_livro"
+        android:hint="tarefa"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/LabelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome da tarefa:"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNomeTarefa"
+        app:layout_constraintStart_toStartOf="@+id/editTextNomeTarefa" />
+
+    <Button
+        android:id="@+id/button_select_date_inicio"
+        style="@style/buttonPequeno"
+        android:layout_marginEnd="20dp"
+        android:text="Inicial"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNomeTarefa" />
+
+    <TextView
+        android:id="@+id/text_selected_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Selecionada: "
+        style="@style/LabelStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/button_select_date_fim"
+        app:layout_constraintEnd_toStartOf="@+id/button_select_date_fim"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/button_select_date_fim" />
+
+    <Button
+        android:id="@+id/button_select_date_fim"
+        style="@style/buttonPequeno"
+        android:text="Final"
+
+        app:layout_constraintEnd_toEndOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/button_select_date_inicio" />
+
+    <TextView
+        android:id="@+id/text_selected_fim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Selecionada: "
+        style="@style/LabelStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/button_select_date_inicio"
+        app:layout_constraintEnd_toStartOf="@+id/button_select_date_inicio"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/button_select_date_inicio" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/LabelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Prazo Da Tarefa"
+        app:layout_constraintStart_toStartOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNomeTarefa" />
+
+    <EditText
+        android:id="@+id/editTextMultiLineDescricao"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
+        app:layout_constraintStart_toStartOf="@+id/editTextText3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewDescricao"
+        style="@style/LabelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Objetivo"
+        app:layout_constraintStart_toStartOf="@+id/editTextTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitulo" />
+
+    <TextView
+        android:id="@+id/textViewSubTitulo"
+        style="@style/LabelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titulo:"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTitulo"
+        app:layout_constraintStart_toStartOf="@+id/editTextTitulo" />
+
+    <EditText
+        android:id="@+id/editTextTitulo"
+        style="@style/BolhaDeCaixa"
+        android:drawableRight="@drawable/ic_add_compartilhar"
+        android:ems="10"
+        android:hint="titulo"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNomeTarefa"
+        app:layout_constraintStart_toStartOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/button_select_date_fim" />
+
+    <EditText
+        android:id="@+id/editTextText3"
+        style="@style/BolhaDeCaixa"
+        android:drawableRight="@drawable/ic_livro"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="objetivo"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNomeTarefa"
+        app:layout_constraintStart_toStartOf="@+id/editTextNomeTarefa"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescricao" />
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="102dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/focarindo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitulo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição da tarefa"
+        style="@style/LabelStyle"
+        app:layout_constraintStart_toStartOf="@+id/editTextText3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
