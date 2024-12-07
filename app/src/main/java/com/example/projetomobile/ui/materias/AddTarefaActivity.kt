@@ -3,20 +3,41 @@ package com.example.projetomobile.ui.materias
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
+import com.example.projetomobile.data.TarefaRepository
+import com.example.projetomobile.domain.CriarTarefaUseCase
+import com.example.projetomobile.domain.Tarefa
 import java.util.*
 
 class AddTarefaActivity : AppCompatActivity() {
+
+    private lateinit var criarTarefaUseCase: CriarTarefaUseCase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_tarefa)
+
+        // pega dados da tela e passa para o codigo
+        val editTextNomeTarefa: EditText = findViewById(R.id.editTextNomeTarefa)
+        val editTextTitulo: EditText = findViewById(R.id.editTextTitulo)
+        val editTextObjetivo: EditText = findViewById(R.id.editTextObjetivo)
+        val editTextDescricao: EditText = findViewById(R.id.editTextMultiLineDescricao)
+        val textViewDataInicio: TextView = findViewById(R.id.textViewDataInicio)
+        val textViewDataFim: TextView = findViewById(R.id.textViewDataFim)
+        val buttonSalvar: Button = findViewById(R.id.button)
+
+        // Inicializar repositório e caso de uso
+        val tarefaRepository = TarefaRepository()
+        criarTarefaUseCase = CriarTarefaUseCase(tarefaRepository)
 
         // Adiciona o listener para as barras do sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -47,7 +68,7 @@ class AddTarefaActivity : AppCompatActivity() {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     // Formata e exibe a data selecionada no TextView
                     val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textSelectedDate.text = "Data Início Selecionada: $formattedDate"
+                    textSelectedDate.text = "Data Início: $formattedDate"
                 },
                 year, month, day
             )
@@ -68,11 +89,45 @@ class AddTarefaActivity : AppCompatActivity() {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     // Formata e exibe a data selecionada no TextView
                     val formattedDateFim = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textSelectedDateFim.text = "Data Fim Selecionada: $formattedDateFim"
+                    textSelectedDateFim.text = "Data Final $formattedDateFim"
                 },
                 year, month, day
             )
             datePickerDialogFim.show()
+        }
+        buttonSalvar.setOnClickListener {
+            val nomeTarefa = editTextNomeTarefa.text.toString()
+            val titulo = editTextTitulo.text.toString()
+            val objetivo = editTextObjetivo.text.toString()
+            val descricao = editTextDescricao.text.toString()
+            val dataInicio = textViewDataInicio.text.toString()
+            val dataFim = textViewDataFim.text.toString()
+
+            if (nomeTarefa.isNotEmpty() && titulo.isNotEmpty() && dataInicio.isNotEmpty() && dataFim.isNotEmpty()) {
+                val tarefa = Tarefa(
+                    nome = nomeTarefa,
+                    titulo = titulo,
+                    objetivo = objetivo,
+                    descricao = descricao,
+                    dataInicio = dataInicio,
+                    dataFim = dataFim
+                )
+
+                criarTarefaUseCase.execute(
+                    //usuarioId = "USER_ID",  //ja foi colocado direto
+                    materiaId = "",  // Troque por um ID real
+                    tarefa = tarefa
+                ) { sucesso, mensagem ->
+                    if (sucesso) {
+                        Toast.makeText(this, "Tarefa salva com sucesso!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Erro ao salvar tarefa: $mensagem", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

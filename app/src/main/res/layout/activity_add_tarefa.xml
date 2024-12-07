@@ -8,9 +8,7 @@
     android:fillViewport="true"
     tools:context=".ui.materias.AddTarefaActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,26 +20,26 @@
         style="@style/TitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="@string/tela_add_atividade_titulo_principal"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/editTextNomeTarefa"
         style="@style/BolhaDeCaixa"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="task"
         android:drawableEnd="@drawable/ic_livro"
         android:hint="@string/tela_add_atividade_tarefa"
         android:inputType="text"
-        android:autofillHints="task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
-
 
     <TextView
         android:id="@+id/textViewTarefa"
@@ -127,11 +125,11 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="102dp"
         android:layout_height="118dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/tela_add_atividade_Img_mascote"
         android:src="@drawable/focafeliz"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

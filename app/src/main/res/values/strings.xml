@@ -57,6 +57,14 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_perfil">Perfil</string>
+
+    <!-- TODO: tela de entrada via dialogos -->
+
+    <string name="informe">Mensagem da notificação</string>
+    <string name="input_hint">Digite...</string>
+    <string name="confirm">confirmar</string>
+    <string name="cancel">cancelar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
