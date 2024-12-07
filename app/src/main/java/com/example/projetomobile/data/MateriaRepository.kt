@@ -36,7 +36,7 @@ class MateriaRepository {
     }
 
 
-fun buscarMaterias(usuarioId: String, callback: (List<Map<String, Any>>?, String?) -> Unit) {
+    fun buscarMaterias(usuarioId: String, callback: (List<Map<String, Any>>?, String?) -> Unit) {
         db.collection("Usuarios").document(usuarioId)
             .collection("materias")
             .get()
@@ -53,4 +53,6 @@ fun buscarMaterias(usuarioId: String, callback: (List<Map<String, Any>>?, String
                 }
             }
     }
+
+
 }

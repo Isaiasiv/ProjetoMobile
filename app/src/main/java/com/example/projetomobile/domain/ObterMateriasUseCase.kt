@@ -1,8 +1,7 @@
-package com.example.projetomobile.domain
-
 import com.example.projetomobile.data.MateriaRepository
+import com.example.projetomobile.domain.Materia
 
-class BuscarMateriasUseCase(private val materiaRepository: MateriaRepository) {
+class ObterMateriasUseCase(private val materiaRepository: MateriaRepository) {
 
     fun execute(usuarioId: String, callback: (List<Materia>?, String?) -> Unit) {
         materiaRepository.buscarMaterias(usuarioId) { materiasMap, mensagemErro ->

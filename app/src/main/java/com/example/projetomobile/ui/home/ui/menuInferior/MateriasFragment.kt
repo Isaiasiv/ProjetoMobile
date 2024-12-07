@@ -1,11 +1,20 @@
 package com.example.projetomobile.ui.home.ui.menuInferior
 
+import ObterMateriasUseCase
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
+import com.example.projetomobile.data.MateriaRepository
+import com.example.projetomobile.domain.Materia
+import com.example.projetomobile.ui.materias.MateriaAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,21 +31,66 @@ class MateriasFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MateriaAdapter
+    private val materias: MutableList<Materia> = mutableListOf() // Lista mutável para atualizar dinamicamente
+
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-    }
 
-    override fun onCreateView(
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Configura o RecyclerView
+        recyclerView = findViewById(R.id.RecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.setHasFixedSize(true)
+
+        // Obtenha a lista de materias
+        materias = ObterMateriasUseCase.getMaterias()
+
+
+        recyclerView.adapter = adapter
+    }*/override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_materias, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = view.findViewById(R.id.recycler_feed)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.setHasFixedSize(true)
+
+        adapter = MateriaAdapter(materias) { materia ->
+            // Clique em uma matéria
+            exibirDetalhesMateria(materia)
+        }
+
+        recyclerView.adapter = adapter
+
+        buscarMaterias()
+    }
+
+    /*override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_materias, container, false)
+
+    }*/
 
     companion object {
         /**
@@ -56,5 +110,37 @@ class MateriasFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
+    private fun buscarMaterias() {
+
+        val usuarioId = usuarioId
+        if (usuarioId != null) {
+            val repository = MateriaRepository()
+            val obterMateriasUseCase = ObterMateriasUseCase(repository)
+
+            // Passando o usuarioId para o execute
+            obterMateriasUseCase.execute(usuarioId) { materiasList, mensagemErro ->
+                if (materiasList != null) {
+                    materias.clear()
+                    materias.addAll(materiasList)
+                    adapter.notifyDataSetChanged() // Atualiza o RecyclerView
+                } else {
+                    // Trate o erro, como exibir uma mensagem
+                    mensagemErro?.let {
+                        // Exibe um Toast ou Log para depuração
+                        Log.e("MateriasFragment", "Erro ao buscar matérias: $it")
+                    }
+                }
+            }
+        } else {
+            // Caso o usuarioId seja nulo (usuário não autenticado)
+            Log.e("MateriasFragment", "Usuário não autenticado.")
+        }
+    }
+
+    private fun exibirDetalhesMateria(materia: Materia) {
+        // Aqui você pode navegar para outra tela ou exibir um diálogo com detalhes da matéria
     }
 }
