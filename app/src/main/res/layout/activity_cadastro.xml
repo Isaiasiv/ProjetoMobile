@@ -29,7 +29,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage" />
 
     <View
         style="@style/ContainerComponents"
@@ -40,9 +41,9 @@
 
     <EditText
         android:id="@+id/editTextNome"
-        android:hint="digite seu nome"
+        android:hint="@string/title_cadastro_nome"
         android:inputType="text"
-        android:drawableRight="@drawable/ic_user"
+        android:drawableEnd="@drawable/ic_user"
         style="@style/BolhaDeCaixa"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
@@ -51,9 +52,9 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:hint="digite seu e-mail"
+        android:hint="@string/title_cadastro_email"
         android:inputType="textEmailAddress"
-        android:drawableRight="@drawable/ic_email"
+        android:drawableEnd="@drawable/ic_email"
         style="@style/BolhaDeCaixa"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
@@ -61,9 +62,9 @@
         />
     <EditText
         android:id="@+id/editTextSenha"
-        android:hint="crie uma senha"
+        android:hint="@string/title_cadastro_criar_senha"
         android:inputType="textPassword"
-        android:drawableRight="@drawable/ic_crier_senha"
+        android:drawableEnd="@drawable/ic_crier_senha"
         style="@style/BolhaDeCaixa"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
@@ -71,9 +72,9 @@
         />
     <EditText
         android:id="@+id/editTextSenhaConfirme"
-        android:hint="crie uma senha"
+        android:hint="@string/title_cadastro_senha"
         android:inputType="textPassword"
-        android:drawableRight="@drawable/ic_crier_senha"
+        android:drawableEnd="@drawable/ic_crier_senha"
         style="@style/BolhaDeCaixa"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
@@ -84,30 +85,32 @@
         android:id="@+id/radioButtonTemosDeUso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:text="RadioButton"
         app:layout_constraintStart_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintTop_toBottomOf="@+id/editTextSenhaConfirme"
-        />
+        tools:ignore="HardcodedText" />
+
 
     <RadioButton
         android:id="@+id/radioButtonTermosPrivacidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RadioButton"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/containerComponents"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintTop_toBottomOf="@+id/radioButtonTemosDeUso"
         tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="802dp" />
+        tools:layout_editor_absoluteY="802dp"
+        tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
         style="@style/button"
