@@ -1,6 +1,7 @@
 package com.example.projetomobile.ui.home.ui.menuInferior
 
 import ObterMateriasUseCase
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
 import com.example.projetomobile.data.MateriaRepository
 import com.example.projetomobile.domain.Materia
+import com.example.projetomobile.ui.materias.AddTarefaActivity
 import com.example.projetomobile.ui.materias.MateriaAdapter
 import com.google.firebase.auth.FirebaseAuth
 
@@ -141,6 +143,11 @@ class MateriasFragment : Fragment() {
     }
 
     private fun exibirDetalhesMateria(materia: Materia) {
-        // Aqui você pode navegar para outra tela ou exibir um diálogo com detalhes da matéria
+        val intent = Intent(requireContext(), AddTarefaActivity::class.java)
+        // Passar os dados da matéria para a nova Activity
+        intent.putExtra("materia_nome", materia.nome)
+        intent.putExtra("materia_descricao", materia.descricao)
+        // Iniciar a nova Activity
+        startActivity(intent)
     }
 }
