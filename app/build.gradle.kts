@@ -64,6 +64,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 
 }

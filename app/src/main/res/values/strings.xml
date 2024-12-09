@@ -29,7 +29,6 @@
     <string name="title_cadastro_senha">Crie uma senha</string>
 
 
-
     <!-- TODO: menu inferior textos -->
 
     <string name="menu_inferior_home">Home</string>
@@ -76,7 +75,7 @@
 
 
     <!-- TODO: Tela de cadastrar materia -->
-    
+
     <string name="materia_cadastra">Cadastre sua matéria</string>
     <string name="materia_digite">Digite sua matéria aqui</string>
     <string name="materia_confirmar">Confirmar </string>
