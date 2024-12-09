@@ -18,20 +18,21 @@ tools:context=".ui.materias.MateriaActivity">
     app:layout_constraintTop_toBottomOf="@+id/title_cadastro"
     app:srcCompat="@drawable/focafeliz" />
 
-<TextView
-    android:id="@+id/title_cadastro"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:text="@string/title_cadastro"
-    android:textColor="@color/white"
-    android:textSize="45dp"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/title_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/materia_cadastra"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<View
+    <View
     style="@style/ContainerComponents"
     android:id="@+id/containerComponents"
     app:layout_constraintEnd_toEndOf="parent"
@@ -40,21 +41,21 @@ tools:context=".ui.materias.MateriaActivity">
 
 <EditText
     android:id="@+id/editTextDialogo"
-    android:hint="digite seu nome"
+    android:hint="Digite sua matéria aqui"
     android:inputType="text"
-    android:drawableRight="@drawable/ic_user"
+    android:drawableEnd="@drawable/ic_lapis"
     style="@style/BolhaDeCaixa"
     app:layout_constraintEnd_toEndOf="@+id/containerComponents"
     app:layout_constraintStart_toStartOf="@+id/containerComponents"
     app:layout_constraintTop_toTopOf="@+id/containerComponents"
-    />
+    tools:ignore="HardcodedText" />
 
 <androidx.appcompat.widget.AppCompatButton
     style="@style/button"
     android:id="@+id/buttonConfirmar"
     android:textColor="@color/white"
     android:textStyle="bold"
-    android:text="@string/cadastrar"
+    android:text="@string/materia_confirmar"
     app:layout_constraintEnd_toEndOf="@+id/containerComponents"
     app:layout_constraintStart_toStartOf="@+id/containerComponents"
     app:layout_constraintTop_toBottomOf="@+id/editTextDialogo" />
@@ -64,7 +65,7 @@ tools:context=".ui.materias.MateriaActivity">
     android:id="@+id/buttonCancelar"
     android:textColor="@color/white"
     android:textStyle="bold"
-    android:text="@string/cadastrar"
+    android:text="@string/materia_cancelar"
     app:layout_constraintEnd_toEndOf="@+id/containerComponents"
     app:layout_constraintStart_toStartOf="@+id/containerComponents"
     app:layout_constraintTop_toBottomOf="@+id/buttonConfirmar" />

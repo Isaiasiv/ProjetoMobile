@@ -20,9 +20,15 @@
     <string name="text_cadastro">Crie uma conta</string>
     <string name="entrar_gmail">Entrar com o gmail</string>
 
-    <!-- TODO: tela de cadastro textos -->
+    <!-- TODO: tela de cadastro usuario -->
 
     <string name="title_cadastro">Faça seu Cadastro</string>
+    <string name="title_cadastro_nome">Digite seu nome</string>
+    <string name="title_cadastro_email">Digite seu e-mail</string>
+    <string name="title_cadastro_criar_senha">Crie uma senha</string>
+    <string name="title_cadastro_senha">Crie uma senha</string>
+
+
 
     <!-- TODO: menu inferior textos -->
 
@@ -67,4 +73,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- TODO: Tela de cadastrar materia -->
+    
+    <string name="materia_cadastra">Cadastre sua matéria</string>
+    <string name="materia_digite">Digite sua matéria aqui</string>
+    <string name="materia_confirmar">Confirmar </string>
+    <string name="materia_cancelar">Cancelar </string>
+
+
 </resources>
