@@ -2,6 +2,7 @@ package com.example.projetomobile.ui.materias
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -20,13 +21,12 @@ class AddTarefaActivity : AppCompatActivity() {
 
     private lateinit var criarTarefaUseCase: CriarTarefaUseCase
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_tarefa)
 
-        // pega dados da tela e passa para o codigo
+        // pega dados da tela e passa para o código
         val editTextNomeTarefa: EditText = findViewById(R.id.editTextNomeTarefa)
         val editTextTitulo: EditText = findViewById(R.id.editTextTitulo)
         val editTextObjetivo: EditText = findViewById(R.id.editTextObjetivo)
@@ -89,12 +89,13 @@ class AddTarefaActivity : AppCompatActivity() {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     // Formata e exibe a data selecionada no TextView
                     val formattedDateFim = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textSelectedDateFim.text = "Data Final $formattedDateFim"
+                    textSelectedDateFim.text = "Data Final: $formattedDateFim"
                 },
                 year, month, day
             )
             datePickerDialogFim.show()
         }
+
         buttonSalvar.setOnClickListener {
             val nomeTarefa = editTextNomeTarefa.text.toString()
             val titulo = editTextTitulo.text.toString()
@@ -113,20 +114,31 @@ class AddTarefaActivity : AppCompatActivity() {
                     dataFim = dataFim
                 )
 
+                val materiaId = intent.getStringExtra("materia_id")
+
+                // Verifique se o materiaId não é nulo
+                if (materiaId.isNullOrEmpty()) {
+                    // Mostra um erro caso não exista o ID da matéria
+                    Toast.makeText(this, "Erro: Materia ID não encontrado.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                // Passando o ID da matéria para o uso no caso de criar a tarefa
                 criarTarefaUseCase.execute(
-                    //usuarioId = "USER_ID",  //ja foi colocado direto
-                    materiaId = "",  // Troque por um ID real
+                    materiaId = materiaId,  // O ID da matéria é passado aqui
                     tarefa = tarefa
                 ) { sucesso, mensagem ->
                     if (sucesso) {
                         Toast.makeText(this, "Tarefa salva com sucesso!", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        Toast.makeText(this, "Erro ao salvar tarefa: $mensagem", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Erro ao salvar tarefa: $mensagem", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             } else {
-                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }

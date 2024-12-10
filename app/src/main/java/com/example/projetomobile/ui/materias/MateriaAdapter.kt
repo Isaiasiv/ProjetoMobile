@@ -33,7 +33,9 @@ class MateriaAdapter(
         fun bind(materia: Materia, clickListener: (Materia) -> Unit) {
             textTitulo.text = materia.nome
             textDescricao.text = materia.descricao
-            itemView.setOnClickListener { clickListener(materia) }
+            itemView.setOnClickListener {
+                clickListener(materia)  // Passando o objeto completo da matéria
+            }
         }
     }
 }

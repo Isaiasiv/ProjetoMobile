@@ -145,10 +145,10 @@ class MateriasFragment : Fragment() {
 
     private fun exibirDetalhesMateria(materia: Materia) {
         val intent = Intent(requireContext(), TarefasViewActivity::class.java)
-        // Passar os dados da matéria para a nova Activity
-        intent.putExtra("materia_nome", materia.nome)
-        intent.putExtra("materia_descricao", materia.descricao)
+        // Passar o ID da matéria para a nova Activity
+        intent.putExtra("materia_id", materia.id)  // Aqui estamos passando o ID
         // Iniciar a nova Activity
         startActivity(intent)
     }
+
 }

@@ -8,15 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
 import com.example.projetomobile.ui.materias.AddTarefaActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 class TarefasViewActivity : AppCompatActivity() {
 
     private lateinit var tarefaAdapter: TarefaAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var materiaId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tarefas_view)
+
+        // Recupera o ID da matéria passado pela Intent
+        materiaId = intent.getStringExtra("materia_id") ?: throw IllegalArgumentException("materia_id não foi passado")
 
         recyclerView = findViewById(R.id.recycler_view_main)
         tarefaAdapter = TarefaAdapter(fakeEmails())
@@ -29,9 +32,11 @@ class TarefasViewActivity : AppCompatActivity() {
         // Configurando o clique no FloatingActionButton
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
-            // Abrir a AddTarefaActivity
+            // Passa o ID da matéria para AddTarefaActivity
             val intent = Intent(this, AddTarefaActivity::class.java)
+            intent.putExtra("materia_id", materiaId)  // Passa o ID da matéria
             startActivity(intent)
         }
     }
 }
+
