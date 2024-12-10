@@ -2,7 +2,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.databinding.ItemTarefaBinding
-
+/*
 class TarefasAdapter : RecyclerView.Adapter<TarefasAdapter.TarefaViewHolder>() {
 
     val tarefas = mutableListOf<Map<String, Any>>()
@@ -34,3 +34,4 @@ class TarefasAdapter : RecyclerView.Adapter<TarefasAdapter.TarefaViewHolder>() {
         notifyDataSetChanged()
     }
 }
+*/

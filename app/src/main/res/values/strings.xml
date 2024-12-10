@@ -76,7 +76,7 @@
 
 
     <!-- TODO: Tela de cadastrar materia -->
-    
+
     <string name="materia_cadastra">Cadastre sua matéria</string>
     <string name="materia_digite">Digite sua matéria aqui</string>
     <string name="materia_confirmar">Confirmar </string>
