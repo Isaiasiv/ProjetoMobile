@@ -5,73 +5,168 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_light"
     tools:context=".ui.tarefas.TarefaActivity">
+
+
+    <ImageButton
+        android:id="@+id/btnEditar6"
+        android:layout_alignParentEnd="true"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Editar"
+        android:src="@drawable/ic_lapis"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        tools:ignore="HardcodedText,UseAppTint" />
+
+    <ImageButton
+        android:id="@+id/btnEditar5"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Edit"
+        android:src="@drawable/ic_lapis"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        tools:ignore="HardcodedText,UseAppTint" />
+
+    <ImageButton
+        android:id="@+id/btnEditar3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Editarr"
+        android:src="@drawable/ic_lapis"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        tools:ignore="HardcodedText,UseAppTint" />
+
+    <ImageButton
+        android:id="@+id/btnEditar4"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Edita"
+        android:src="@drawable/ic_lapis"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        tools:ignore="HardcodedText,UseAppTint" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome da Tarefa"
+        android:layout_marginTop="18dp"
+        android:text="@string/tarefa_nome"
+        style="@style/LabelStyleTarefa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="216dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="Marcar como feito"
-        tools:layout_editor_absoluteX="223dp"
-        tools:layout_editor_absoluteY="248dp" />
+        android:layout_marginTop="12dp"
+        android:text="@string/tarefa_botao_feito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="vencimento"
+        android:text="@string/tarefa_vencimento"
+        style="@style/LabelStyleTarefa"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="267dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Titulo da tarefa"
+        android:layout_marginTop="16dp"
+        android:text="@string/tarefa_do_titulo"
+        style="@style/LabelStyleTarefa"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="319dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <ImageButton
         android:id="@+id/btnEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Editar Taref"
+        android:src="@drawable/ic_lapis"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        tools:ignore="HardcodedText,UseAppTint" />
+
+    <ImageButton
+        android:id="@+id/btnEditar2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_margin="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Editar Tarefa"
         android:src="@drawable/ic_lapis"
-        android:tint="@color/black"
-        tools:layout_editor_absoluteX="292dp"
-        tools:layout_editor_absoluteY="373dp" />
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        tools:ignore="HardcodedText,UseAppTint" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="objetivo"
+        android:layout_marginTop="16dp"
+        android:text="@string/tarefa_objetivo"
+        style="@style/LabelStyleTarefa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="365dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="descrição"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="409dp" />
+        android:layout_marginTop="8dp"
+        android:text="@string/tarefa_descricao"
+        style="@style/LabelStyleTarefa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -79,15 +174,40 @@
         android:layout_height="138dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/focalendo"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/focalendo" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Titulo"
+        style="@style/TitleStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="166dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="HardcodedText" />
+
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tarefa_botao_deletar"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="667dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/tarefa_descricao_tarefa"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 </androidx.constraintlayout.widget.ConstraintLayout>

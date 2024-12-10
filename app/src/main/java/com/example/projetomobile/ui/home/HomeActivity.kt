@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.projetomobile.R
 import com.example.projetomobile.databinding.ActivityHomeBinding
 import com.example.projetomobile.ui.materias.MateriaActivity
+import com.example.projetomobile.ui.tarefas.TarefasViewActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -53,8 +54,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun ButtonFutuant() {
         val intent = Intent(this, MateriaActivity::class.java)
+        //val intent = Intent(this, TarefasViewActivity::class.java)
         startActivity(intent)
-        //finish()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

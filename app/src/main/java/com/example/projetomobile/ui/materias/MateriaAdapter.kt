@@ -15,7 +15,7 @@ class MateriaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MateriaViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_tarefa, parent, false)
+            .inflate(R.layout.item_materia, parent, false)
         return MateriaViewHolder(view)
     }
 

@@ -16,6 +16,7 @@ import com.example.projetomobile.data.MateriaRepository
 import com.example.projetomobile.domain.Materia
 import com.example.projetomobile.ui.materias.AddTarefaActivity
 import com.example.projetomobile.ui.materias.MateriaAdapter
+import com.example.projetomobile.ui.tarefas.TarefasViewActivity
 import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
@@ -143,7 +144,7 @@ class MateriasFragment : Fragment() {
     }
 
     private fun exibirDetalhesMateria(materia: Materia) {
-        val intent = Intent(requireContext(), AddTarefaActivity::class.java)
+        val intent = Intent(requireContext(), TarefasViewActivity::class.java)
         // Passar os dados da matéria para a nova Activity
         intent.putExtra("materia_nome", materia.nome)
         intent.putExtra("materia_descricao", materia.descricao)

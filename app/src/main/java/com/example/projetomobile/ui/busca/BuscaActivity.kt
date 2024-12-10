@@ -1,6 +1,6 @@
 package com.example.projetomobile.ui.busca
 
-import TarefasAdapter
+//import TarefasAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity

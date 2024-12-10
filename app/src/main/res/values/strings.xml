@@ -76,11 +76,21 @@
 
 
     <!-- TODO: Tela de cadastrar materia -->
-    
+
     <string name="materia_cadastra">Cadastre sua matéria</string>
     <string name="materia_digite">Digite sua matéria aqui</string>
     <string name="materia_confirmar">Confirmar </string>
     <string name="materia_cancelar">Cancelar </string>
 
+    <!-- TODO: Tela de cadastrar tarefa -->
 
+    <string name="tarefa_titulo">Titulo</string>
+    <string name="tarefa_nome">Nome da tarefa</string>
+    <string name="tarefa_vencimento">Vencimento</string>
+    <string name="tarefa_botao_feito">Marcar como feito</string>
+    <string name="tarefa_do_titulo">Titulo da tarefa</string>
+    <string name="tarefa_objetivo">Objetivo</string>
+    <string name="tarefa_descricao">Descrição</string>
+    <string name="tarefa_botao_deletar">Deletar</string>
+    <string name="tarefa_descricao_tarefa">Descrição da tarefa</string>
 </resources>
