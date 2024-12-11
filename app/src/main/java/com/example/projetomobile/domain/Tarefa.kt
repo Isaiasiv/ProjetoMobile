@@ -7,5 +7,6 @@ data class Tarefa(
     val objetivo: String,
     val descricao: String,
     val dataInicio: String,
-    val dataFim: String
+    val dataFim: String,
+    val status: String
 )

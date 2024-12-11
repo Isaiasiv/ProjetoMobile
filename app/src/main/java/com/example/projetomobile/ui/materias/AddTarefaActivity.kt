@@ -111,7 +111,8 @@ class AddTarefaActivity : AppCompatActivity() {
                     objetivo = objetivo,
                     descricao = descricao,
                     dataInicio = dataInicio,
-                    dataFim = dataFim
+                    dataFim = dataFim,
+                    status = "ativo"
                 )
 
                 val materiaId = intent.getStringExtra("materia_id")
