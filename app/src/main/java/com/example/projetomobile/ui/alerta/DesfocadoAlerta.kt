@@ -1,7 +1,9 @@
 package com.example.projetomobile.ui.alerta
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Window
@@ -9,9 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.projetomobile.R
 
-import org.w3c.dom.Text
-
-class DesfocadoAlerta {
+class DesfocadoAlerta(private val atividadeAtual: Activity, private val novaAtividade: Class<*>) {
 
     fun showDesfocadoAlertBox(context: Context, message:String){
         val dialog = Dialog(context)
@@ -27,7 +27,9 @@ class DesfocadoAlerta {
         textAlertMensagem.text = message
 
         btnAbrir.setOnClickListener{
-            //escrever o codigo para abrir a atividade
+            //nao sei se está funcionando, tem que testar
+            val intent = Intent(context, novaAtividade)
+            atividadeAtual.startActivity(intent)
         }
 
         btnFechar.setOnClickListener {
