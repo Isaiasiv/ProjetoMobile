@@ -30,7 +30,7 @@ class EntradaAlerta {
         val editText: EditText = dialog.findViewById(R.id.editTextTextPassword)
 
         textAlertMensagem.text = message
-        textViewTitulo.text = "Digite sua senha"
+        textViewTitulo.text = "Digite a senha"
         btnAbrir.text = "Confirmar"
         btnFechar.text = "Cancelar"
 

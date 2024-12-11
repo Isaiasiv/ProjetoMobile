@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.projetomobile.databinding.FragmentPerfilBinding
 import com.example.projetomobile.domain.Usuario
 import com.example.projetomobile.ui.alerta.EntradaAlerta
+import com.example.projetomobile.ui.alerta.ExcluirPerfilAlerta
 import com.example.projetomobile.ui.login.Login // Ajuste o caminho do LoginActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -64,41 +66,90 @@ class PerfilFragment : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
-        binding.buttonExcluirConta.setOnClickListener {
+        binding.buttonrecuperarSenha.setOnClickListener {
             val currentUser = FirebaseAuth.getInstance().currentUser
 
             if (currentUser != null) {
-                // Obter o ID do usuário
-                val userId = currentUser.uid
+                val email = currentUser.email // Obter o e-mail do usuário logado
 
-                // Excluir os dados do Firestore
-                excluirDadosFirestore(userId)
-
-                // Excluir a conta do usuário
-                currentUser.delete()
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            // Conta excluída com sucesso
-                            Toast.makeText(requireContext(), "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(requireContext(), Login::class.java)
-                            startActivity(intent)
-                            requireActivity().finish()
+                // Abrir a caixa de diálogo para solicitar a senha
+                val alerta = EntradaAlerta()
+                alerta.showDesfocadoAlertBox(requireContext(), "Por favor, digite sua senha para confirmar") { confirmed, senha ->
+                    if (confirmed) {
+                        if (senha.isNotEmpty()) {
+                            // Atualizar a senha com a nova senha fornecida
+                            currentUser.updatePassword(senha)
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        // Senha atualizada com sucesso
+                                        Toast.makeText(requireContext(), "Senha atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        // Falha ao atualizar a senha
+                                        Toast.makeText(requireContext(), "Erro ao atualizar a senha: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                                    }
+                                }
                         } else {
-                            // Falha ao excluir a conta
-                            val exceptionMessage = task.exception?.message ?: "Erro desconhecido"
-                            Toast.makeText(requireContext(), "Erro ao excluir conta: $exceptionMessage", Toast.LENGTH_LONG).show()
-                            reautenticarUsuario()
-                            // Verificar se é necessário reautenticar o usuário
-                            if (task.exception?.message?.contains("recent login") == true) {
-                                // Chama a reautenticação
-                                reautenticarUsuario()
-                            }
+                            Toast.makeText(requireContext(), "A senha não pode estar vazia!", Toast.LENGTH_LONG).show()
                         }
+                    } else {
+                        Toast.makeText(requireContext(), "Ação cancelada.", Toast.LENGTH_SHORT).show()
                     }
+                }
             } else {
                 Toast.makeText(requireContext(), "Nenhum usuário autenticado encontrado!", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+        binding.buttonExcluirConta.setOnClickListener {
+            // Criar a instância do alerta
+            val alerta = ExcluirPerfilAlerta()
+
+            // Exibir o alerta de confirmação
+            alerta.showDesfocadoAlertBox(requireContext(), "Tem certeza que deseja excluir sua conta?") { confirmed ->
+                if (confirmed) {
+                    // Se o usuário confirmar, prossegue com a exclusão
+
+                    val currentUser = FirebaseAuth.getInstance().currentUser
+
+                    if (currentUser != null) {
+                        // Obter o ID do usuário
+                        val userId = currentUser.uid
+
+                        // Excluir os dados do Firestore
+                        excluirDadosFirestore(userId)
+
+                        // Excluir a conta do usuário
+                        currentUser.delete()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    // Conta excluída com sucesso
+                                    Toast.makeText(requireContext(), "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(requireContext(), Login::class.java)
+                                    startActivity(intent)
+                                    requireActivity().finish()
+                                } else {
+                                    // Falha ao excluir a conta
+                                    val exceptionMessage = task.exception?.message ?: "Erro desconhecido"
+                                    Toast.makeText(requireContext(), "Erro ao excluir conta: $exceptionMessage", Toast.LENGTH_LONG).show()
+
+                                    // Verificar se é necessário reautenticar o usuário
+                                    if (task.exception?.message?.contains("recent login") == true) {
+                                        // Chama a reautenticação
+                                        reautenticarUsuario()
+                                    }
+                                }
+                            }
+                    } else {
+                        Toast.makeText(requireContext(), "Nenhum usuário autenticado encontrado!", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Caso o usuário cancele
+                    Toast.makeText(requireContext(), "Exclusão de conta cancelada.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
 
 
@@ -164,6 +215,38 @@ class PerfilFragment : Fragment() {
                 Log.w("Excluir Dados", "Erro ao excluir dados do usuário no Firestore", e)
             }
     }
+    private fun editarUsuarioESenha(novoEmail: String?, novaSenha: String?) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            // Atualizar o e-mail se um novo e-mail for fornecido
+            novoEmail?.let {
+                currentUser.updateEmail(it)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(requireContext(), "E-mail atualizado com sucesso!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Erro ao atualizar e-mail: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
+
+            // Atualizar a senha se uma nova senha for fornecida
+            novaSenha?.let {
+                currentUser.updatePassword(it)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(requireContext(), "Senha atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Erro ao atualizar senha: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
+        } else {
+            Toast.makeText(requireContext(), "Nenhum usuário autenticado encontrado!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun atualizarUI(usuario: Usuario) {
         binding.textViewUsuario.text = usuario.nome
