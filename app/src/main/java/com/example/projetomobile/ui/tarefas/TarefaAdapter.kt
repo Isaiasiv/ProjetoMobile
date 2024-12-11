@@ -1,50 +1,19 @@
 package com.example.projetomobile.ui.tarefas
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
 import com.example.projetomobile.domain.Tarefa
 
-class TarefaAdapter(private val tarefas: MutableList<Tarefa>) : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>() {
+class TarefaAdapter(private var tarefas: MutableList<Tarefa>) : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>() {
 
-    inner class TarefaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tituloText: TextView = itemView.findViewById(R.id.txt_user)
-        val descricaoText: TextView = itemView.findViewById(R.id.txt_subject)
-        //val statusText: TextView = itemView.findViewById(R.id.txt_status)
-        //val starIcon: ImageView = itemView.findViewById(R.id.img_star)
+    private var onItemClickListener: ((Tarefa) -> Unit)? = null
 
-        fun bind(tarefa: Tarefa) {
-            tituloText.text = tarefa.titulo
-            descricaoText.text = tarefa.descricao
-            //starIcon.setImageResource(if (tarefa.stared) R.drawable.ic_coracao_cheio else R.drawable.ic_coracao)
-
-            // Clique no item para abrir nova atividade
-            itemView.setOnClickListener {
-                val context = itemView.context
-                val intent = Intent(context, TarefaActivity::class.java)
-
-                // Passando dados para a nova atividade
-                intent.putExtra("TITULO", tarefa.titulo)
-                intent.putExtra("DESCRICAO", tarefa.descricao)
-                //intent.putExtra("STARRED", tarefa.stared)
-
-                context.startActivity(intent)
-            }
-            /*
-            // Marcar como favorito
-            starIcon.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    //tarefa.stared = !tarefa.stared
-                    notifyItemChanged(position)
-                }
-            }*/
-        }
+    fun setOnItemClickListener(listener: (Tarefa) -> Unit) {
+        this.onItemClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TarefaViewHolder {
@@ -53,25 +22,32 @@ class TarefaAdapter(private val tarefas: MutableList<Tarefa>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: TarefaViewHolder, position: Int) {
-        holder.bind(tarefas[position])
+        val tarefa = tarefas[position]
+        holder.bind(tarefa)
+
+        // Adiciona o clique no item
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(tarefa)
+        }
     }
 
     override fun getItemCount(): Int = tarefas.size
 
-    fun updateTarefas(newTarefas: List<Tarefa>) {
+    fun updateTarefas(novasTarefas: List<Tarefa>) {
         tarefas.clear()
-        tarefas.addAll(newTarefas)
-        notifyItemRangeChanged(0, tarefas.size) // Notifica apenas o intervalo alterado
+        tarefas.addAll(novasTarefas)
+        notifyDataSetChanged()
     }
 
-    /*fun removeItem(position: Int) {
-        tarefas.removeAt(position)
-        notifyItemRemoved(position)
-    }
+    class TarefaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewNome: TextView = itemView.findViewById(R.id.txtNome)
+        private val textViewObjetivo: TextView = itemView.findViewById(R.id.textViewObjetivo)
+        private val textViewDataFinal: TextView = itemView.findViewById(R.id.txt_date)
 
-    fun markAsFavorite(position: Int) {
-        val tarefa = tarefas[position]
-        tarefa.stared = !tarefa.stared
-        notifyItemChanged(position)
-    }*/
+        fun bind(tarefa: Tarefa) {
+            textViewNome.text = tarefa.nome
+            textViewObjetivo.text = tarefa.objetivo
+            textViewDataFinal.text = tarefa.dataFim
+        }
+    }
 }

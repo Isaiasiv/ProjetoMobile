@@ -25,7 +25,7 @@
 
 
         <TextView
-            android:id="@+id/txt_user"
+            android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/txt_icon"
@@ -37,11 +37,11 @@
             tools:text="Facebook" />
 
         <TextView
-            android:id="@+id/txt_subject"
+            android:id="@+id/textViewObjetivo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_user"
-            android:layout_alignStart="@id/txt_user"
+            android:layout_below="@id/txtNome"
+            android:layout_alignStart="@id/txtNome"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textColor="@color/darkerGray"
@@ -50,11 +50,11 @@
 
 
         <TextView
-            android:id="@+id/txt_preview"
+            android:id="@+id/textViewStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_subject"
-            android:layout_alignStart="@id/txt_user"
+            android:layout_below="@id/textViewObjetivo"
+            android:layout_alignStart="@id/txtNome"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textColor="@color/darkerGray"

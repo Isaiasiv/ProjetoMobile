@@ -49,6 +49,23 @@ class TarefasViewActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_ADD_TAREFA)
         }
 
+        tarefaAdapter.setOnItemClickListener { tarefa ->
+            val intent = Intent(this, TarefaActivity::class.java)
+            intent.putExtra("materia_id", materiaId) // Passando o ID da matéria
+            intent.putExtra("tarefa_id", tarefa.id) // Passando o ID da tarefa
+            intent.putExtra("tarefa_nome", tarefa.nome)
+            intent.putExtra("tarefa_titulo", tarefa.titulo)
+            intent.putExtra("tarefa_status", tarefa.status)
+            intent.putExtra("tarefa_descricao", tarefa.descricao)
+            intent.putExtra("tarefa_objetivo", tarefa.objetivo)
+            intent.putExtra("tarefa_objetivo", tarefa.dataFim)
+            intent.putExtra("tarefa_objetivo", tarefa.dataInicio)
+            startActivity(intent)
+        }
+
+
+
+
     }
     companion object {
         private const val REQUEST_CODE_ADD_TAREFA = 1001
