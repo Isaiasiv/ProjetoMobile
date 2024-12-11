@@ -14,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projetomobile.R
 import com.example.projetomobile.databinding.ActivityHomeBinding
-import com.example.projetomobile.ui.alerta.ExcluirAlerta
 import com.example.projetomobile.ui.materias.MateriaActivity
 import com.example.projetomobile.ui.tarefas.TarefasViewActivity
 
@@ -36,12 +35,8 @@ class HomeActivity : AppCompatActivity() {
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
 
-            val alerta = ExcluirAlerta()
-            alerta.showDesfocadoAlertBox(this, "a exclusão será permanente!!!")
-
-
             // Chama o método para abrir a nova tela
-            //ButtonFutuant()
+            ButtonFutuant()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

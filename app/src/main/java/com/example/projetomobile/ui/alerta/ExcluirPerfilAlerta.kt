@@ -10,7 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.projetomobile.R
 
-class ExcluirAlerta {
+class ExcluirPerfilAlerta {
+
     fun showDesfocadoAlertBox(context: Context, message: String, onConfirm: (Boolean) -> Unit) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -25,12 +26,12 @@ class ExcluirAlerta {
         val btnFechar: Button = dialog.findViewById(R.id.buttonFecharDesfocado)
 
         textAlertMensagem.text = message
-        textViewTitulo.text = "Tem certeza?"
+        textViewTitulo.text = "Tem certeza em\n excluir sua conta?"
         btnAbrir.text = "Confirmar"
         btnFechar.text = "Cancelar"
 
         // Alterar a imagem
-        imageViewMascote.setImageResource(R.drawable.focaobservadora)
+        imageViewMascote.setImageResource(R.drawable.focatriste)
 
         btnAbrir.setOnClickListener {
             onConfirm(true) // Retorna verdadeiro
