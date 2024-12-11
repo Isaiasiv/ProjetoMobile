@@ -14,25 +14,26 @@ class ItemTouchHelperCallback(private val adapter: TarefaAdapter) : ItemTouchHel
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
         if (direction == ItemTouchHelper.LEFT) {
-            // Excluir item
-            adapter.removeItem(viewHolder.adapterPosition)
+            // Excluir tarefa
+            //adapter.excluirTarefa(position)
         } else if (direction == ItemTouchHelper.RIGHT) {
-            // Marcar como favorito
-            adapter.markAsFavorite(viewHolder.adapterPosition)
+            // Marcar tarefa como concluída
+            //adapter.marcarComoConcluida(position)
         }
     }
 
-    // Implementação do método onMove, mesmo sem precisar mover os itens
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return false // Não movemos os itens
+        return false // Movimentação de itens não suportada
     }
 
     override fun isLongPressDragEnabled(): Boolean = false
     override fun isItemViewSwipeEnabled(): Boolean = true
 }
+
 

@@ -126,21 +126,23 @@ class AddTarefaActivity : AppCompatActivity() {
 
                 // Passando o ID da matéria para o uso no caso de criar a tarefa
                 criarTarefaUseCase.execute(
-                    materiaId = materiaId,  // O ID da matéria é passado aqui
+                    materiaId = materiaId,
                     tarefa = tarefa
                 ) { sucesso, mensagem ->
                     if (sucesso) {
                         Toast.makeText(this, "Tarefa salva com sucesso!", Toast.LENGTH_SHORT).show()
+                        setResult(RESULT_OK) // Indica sucesso ao chamar a atividade
                         finish()
                     } else {
-                        Toast.makeText(this, "Erro ao salvar tarefa: $mensagem", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, "Erro ao salvar tarefa: $mensagem", Toast.LENGTH_SHORT).show()
                     }
                 }
+
             } else {
                 Toast.makeText(this, "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT)
                     .show()
             }
         }
     }
+
 }

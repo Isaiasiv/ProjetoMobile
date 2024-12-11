@@ -47,15 +47,16 @@ class TarefaRepository {
             }
     }
 
-
-
     fun buscarTarefas(usuarioId: String, materiaId: String, callback: (List<Map<String, Any>>?, String?) -> Unit) {
-        db.collection("usuarios").document(usuarioId)
+        db.collection("Usuarios").document(usuarioId)
             .collection("materias").document(materiaId)
-            .collection("tarefas").get()
+            .collection("tarefas")
+            .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val tarefas = task.result?.map { it.data } ?: emptyList()
+                    val tarefas = task.result?.documents?.map {
+                        it.data?.plus("id" to it.id) ?: emptyMap()
+                    } ?: emptyList()
                     Log.d("Firestore", "Tarefas encontradas: $tarefas")
                     callback(tarefas, null)
                 } else {
@@ -64,6 +65,7 @@ class TarefaRepository {
                 }
             }
     }
+
 
     fun buscarUmaTarefa(usuarioId: String, materiaId: String, tarefaId: String, callback: (Map<String, Any>?, String?) -> Unit) {
         db.collection("usuarios").document(usuarioId)
