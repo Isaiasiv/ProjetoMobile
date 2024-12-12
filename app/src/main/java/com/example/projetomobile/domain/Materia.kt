@@ -2,6 +2,6 @@ package com.example.projetomobile.domain
 
 data class Materia(
     val id: String = "",
-    val nome: String,
+    var nome: String,
     val descricao: String
 )

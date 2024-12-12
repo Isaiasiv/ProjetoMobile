@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
+import com.example.projetomobile.domain.Verificacoes
 import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
 import com.example.projetomobile.ui.home.HomeActivity
@@ -25,7 +26,7 @@ class Login : AppCompatActivity() {
     private lateinit var EditTextPassword: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var buttonEntrar: Button
-    private lateinit var buttonLoginGmail: Button
+    private lateinit var buttonrecuperarSenha: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,13 @@ class Login : AppCompatActivity() {
             insets
         }
 
+        val verificacoes = Verificacoes()
+
+        buttonrecuperarSenha.setOnClickListener{
+
+            verificacoes.verificarData("16/12/2024", this, "Atividade de matematica")
+
+        }
         buttonEntrar.setOnClickListener {
             val email = EditTextEmail.text.toString()
             val senha = EditTextPassword.text.toString()
@@ -103,7 +111,7 @@ class Login : AppCompatActivity() {
         EditTextEmail = findViewById(R.id.editTextLogin)
         EditTextPassword = findViewById(R.id.editTextPassword)
         buttonEntrar = findViewById(R.id.buttonEntrar)
-        buttonLoginGmail = findViewById(R.id.buttonEntrarGmail)
+        buttonrecuperarSenha = findViewById(R.id.recuperarSenha)
         progressBar = findViewById(R.id.progressbar)
     }
 

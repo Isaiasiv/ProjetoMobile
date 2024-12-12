@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TODO: paleta de cores -->
     <color name="color1">#6184d7</color>
     <color name="color2">#4974c5</color>
     <color name="color3">#3164b2 </color>
@@ -9,5 +10,12 @@
     <color name="white">#ffffff</color>
     <color name="red">#FF0000</color>
     <color name="redclaro">#FF7171</color>
+
+    <!-- TODO: paleta de cores Teste-->
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="darkerGray">#FF444444</color>
 
 </resources>

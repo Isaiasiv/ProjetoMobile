@@ -115,10 +115,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         style="@style/button"
-        android:id="@+id/buttonEntrarGmail"
+        android:id="@+id/recuperarSenha"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="@string/entrar_gmail"
+        android:text="Esqueci a senha"
         app:layout_constraintStart_toEndOf="@+id/ContainerComponents"
         app:layout_constraintStart_toStartOf="@+id/ContainerComponents"
         app:layout_constraintTop_toBottomOf="@+id/textCadastro" />
