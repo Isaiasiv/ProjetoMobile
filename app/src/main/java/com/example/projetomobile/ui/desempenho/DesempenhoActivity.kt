@@ -27,13 +27,18 @@ class DesempenhoActivity : AppCompatActivity() {
 
         // Cria uma lista de entradas para o gráfico de pizza, cada uma representando uma categoria com um valor
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(55f, "matematica"))// Adiciona "matemática" com 55% ao gráfico.
-        entries.add(PieEntry(10f, "ciencias"))// Adiciona "ciências" com 10% ao gráfico.
-        entries.add(PieEntry(20f, "geografia"))// Adiciona "geografia" com 20% ao gráfico.
-        entries.add(PieEntry(15f, "banana")) // Adiciona "banana" com 15% ao gráfico
+        entries.add(
+            PieEntry(
+                80f,
+                "atividades completas"
+            )
+        )// Adiciona "matemática" com 55% ao gráfico.
+        entries.add(PieEntry(10f, "atividades atrasadas"))// Adiciona "ciências" com 10% ao gráfico.
+//        entries.add(PieEntry(20f, "geografia"))// Adiciona "geografia" com 20% ao gráfico.
+//        entries.add(PieEntry(15f, "banana")) // Adiciona "banana" com 15% ao gráfico
 
         // Cria um conjunto de dados para o gráfico de pizza usando as entradas.
-        val pieDataSet: PieDataSet = PieDataSet(entries, "materias")
+        val pieDataSet: PieDataSet = PieDataSet(entries, "atividades")
 
         // Define as cores para os segmentos do gráfico usando um template de cores pré-definido.
         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS.toList())

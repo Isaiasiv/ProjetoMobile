@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoMobile"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.desempenho.DesempenhoActivity"
-            android:exported="false" />
+        <!--        <activity-->
+        <!--            android:name=".ui.desempenho.DesempenhoActivity"-->
+        <!--            android:exported="false" />-->
         <activity
             android:name=".ui.tarefas.TarefaActivity"
             android:exported="false" />
@@ -26,7 +26,7 @@
             android:name=".ui.materias.AddTarefaActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.desempenho.DesempenhoActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.ProjetoMobile.NoActionBar" />
