@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
+import com.example.projetomobile.ui.alerta.ExcluirAlerta
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -78,9 +79,41 @@ class TarefaActivity : AppCompatActivity() {
         btnEditar2.setOnClickListener { showEditDialog("Descrição da Matéria", textDescricao) }
 
         btnDeletar.setOnClickListener {
-            // Lógica para deletar a tarefa
+            // Exibe o alerta de confirmação antes de deletar
+            val alertaExcluir = ExcluirAlerta()
+            alertaExcluir.showDesfocadoAlertBox(this, "Você realmente deseja excluir esta tarefa?") { confirm ->
+                if (confirm) {
+                    // Lógica para deletar a tarefa
+                    deletarTarefa()
+                } else {
+                    // Ação quando o usuário cancela a exclusão
+                    Toast.makeText(this, "Ação cancelada", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
+    // Função para deletar a tarefa
+    private fun deletarTarefa() {
+        usuarioId?.let { id ->
+            val db = FirebaseFirestore.getInstance()
+            val tarefaRef = db.collection("Usuarios").document(id)
+                .collection("materias").document(materiaId)
+                .collection("tarefas").document(tarefaId)
+
+            tarefaRef.delete()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Tarefa excluída com sucesso", Toast.LENGTH_SHORT).show()
+                    finish() // Fecha a atividade após a exclusão
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Erro ao excluir a tarefa: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("Firestore", "Erro ao excluir a tarefa", e)
+                }
+        } ?: run {
+            Toast.makeText(this, "Usuário não autenticado.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun showEditDialog(field: String, textView: TextView) {
         val builder = AlertDialog.Builder(this)

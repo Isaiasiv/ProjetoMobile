@@ -1,32 +1,33 @@
 package com.example.projetomobile.ui.home.ui.menuInferior
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
+import com.example.projetomobile.domain.Tarefa
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BuscaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BuscaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var searchView: SearchView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var adapter: BuscaAdapter
+    private val firestore = FirebaseFirestore.getInstance()
+
+    private var usuarioId: String? = null
+    private var materiaId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            usuarioId = it.getString(ARG_USUARIO_ID)
+            materiaId = it.getString(ARG_MATERIA_ID)
         }
     }
 
@@ -34,26 +35,65 @@ class BuscaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_busca, container, false)
+        val view = inflater.inflate(R.layout.fragment_busca, container, false)
+
+        recyclerView = view.findViewById(R.id.recycler_feed)
+        searchView = view.findViewById(R.id.searchView)
+        progressBar = view.findViewById(R.id.progressBar)
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = BuscaAdapter(mutableListOf())
+        recyclerView.adapter = adapter
+
+        fetchData()
+        setupSearch()
+
+        return view
+    }
+
+    private fun fetchData() {
+        if (usuarioId == null || materiaId == null) return
+
+        progressBar.visibility = View.VISIBLE
+        val tarefaCollectionPath = "Usuarios/QgGVDaK1W3gGZzYxwnHmsw7x1iv1/materias/9G6y9UtGduPxyWq8DbOy/tarefas"
+
+        firestore.collection(tarefaCollectionPath).get()
+            .addOnSuccessListener { result ->
+                val tarefas = result.documents.mapNotNull { doc ->
+                    doc.toObject(Tarefa::class.java)?.apply { id = doc.id }
+                }
+                adapter.updateData(tarefas)
+                progressBar.visibility = View.GONE
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.GONE
+            }
+    }
+
+    private fun setupSearch() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { adapter.filterData(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { adapter.filterData(it) }
+                return true
+            }
+        })
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BuscaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+        private const val ARG_USUARIO_ID = "usuarioId"
+        private const val ARG_MATERIA_ID = "materiaId"
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(usuarioId: String, materiaId: String) =
             BuscaFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(ARG_USUARIO_ID, usuarioId)
+                    putString(ARG_MATERIA_ID, materiaId)
                 }
             }
     }
