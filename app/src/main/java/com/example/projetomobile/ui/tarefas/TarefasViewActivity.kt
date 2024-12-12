@@ -58,8 +58,8 @@ class TarefasViewActivity : AppCompatActivity() {
             intent.putExtra("tarefa_status", tarefa.status)
             intent.putExtra("tarefa_descricao", tarefa.descricao)
             intent.putExtra("tarefa_objetivo", tarefa.objetivo)
-            intent.putExtra("tarefa_objetivo", tarefa.dataFim)
-            intent.putExtra("tarefa_objetivo", tarefa.dataInicio)
+            intent.putExtra("tarefa_dataFim", tarefa.dataFim)
+            intent.putExtra("tarefa_dataInicio", tarefa.dataInicio)
             startActivity(intent)
         }
 

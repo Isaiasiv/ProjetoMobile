@@ -21,15 +21,14 @@ class TarefaActivity : AppCompatActivity() {
             insets
         }
         // Recuperando os componentes do layout
-        val textTitulo: TextView = findViewById(R.id.textView13)
-        val textNome: TextView = findViewById(R.id.textView3)
-        val textVencimento: TextView = findViewById(R.id.textView9)
-        val textStatus: TextView = findViewById(R.id.textView10)
-        val textObjetivo: TextView = findViewById(R.id.textView11)
-        val textDescricao: TextView = findViewById(R.id.textView12)
-        val textDatas: TextView = findViewById(R.id.textView14)
+        val textTitulo: TextView = findViewById(R.id.textViewTarefaTitulo)
+        val textNome: TextView = findViewById(R.id.textViewTarefaNomeDaTarefa)
+        val textVencimento: TextView = findViewById(R.id.textViewTarefaDataFim)
+        val textDataInicia: TextView = findViewById(R.id.textViewTarefaDataInicial)
+        val textObjetivo: TextView = findViewById(R.id.textViewTarefaObjetivo)
+        val textDescricao: TextView = findViewById(R.id.textViewTarefaDetalhes)
         val btnEditar: ImageButton = findViewById(R.id.btnEditar)
-        val btnDeletar: Button = findViewById(R.id.button3)
+        val btnDeletar: Button = findViewById(R.id.buttonDeletar)
 
         // Recuperar IDs
         val materiaId = intent.getStringExtra("materia_id") ?: "ID da matéria não encontrado"
@@ -43,11 +42,13 @@ class TarefaActivity : AppCompatActivity() {
         val tarefaDataFim = intent.getStringExtra("tarefa_dataFim")
         val tarefaDataInicio = intent.getStringExtra("tarefa_dataInicio")
 
+
+
         // Atribuindo os valores aos componentes
-        textTitulo.text = tarefaTitulo
-        textNome.text = tarefaNome
-        textVencimento.text = "Vencimento: $tarefaDataFim"
-        textStatus.text = tarefaStatus
+        textTitulo.text = tarefaNome
+        textNome.text = tarefaTitulo
+        textVencimento.text = tarefaDataFim
+        textDataInicia.text = tarefaDataInicio
         textObjetivo.text = tarefaObjetivo
         textDescricao.text = tarefaDescricao
         //textDatas.text = "Início: $dataInicio\nFim: $dataFim"

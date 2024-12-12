@@ -68,7 +68,7 @@ class AddTarefaActivity : AppCompatActivity() {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     // Formata e exibe a data selecionada no TextView
                     val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textSelectedDate.text = "Data Início: $formattedDate"
+                    textSelectedDate.text = "Criada: $formattedDate"
                 },
                 year, month, day
             )
@@ -89,7 +89,7 @@ class AddTarefaActivity : AppCompatActivity() {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     // Formata e exibe a data selecionada no TextView
                     val formattedDateFim = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textSelectedDateFim.text = "Data Final: $formattedDateFim"
+                    textSelectedDateFim.text = formattedDateFim
                 },
                 year, month, day
             )
