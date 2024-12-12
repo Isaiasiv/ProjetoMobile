@@ -133,6 +133,7 @@ class PerfilFragment : Fragment() {
                                     val exceptionMessage = task.exception?.message ?: "Erro desconhecido"
                                     Toast.makeText(requireContext(), "Erro ao excluir conta: $exceptionMessage", Toast.LENGTH_LONG).show()
 
+                                    reautenticarUsuario()
                                     // Verificar se é necessário reautenticar o usuário
                                     if (task.exception?.message?.contains("recent login") == true) {
                                         // Chama a reautenticação

@@ -1,60 +1,82 @@
 package com.example.projetomobile.ui.home.ui.menuInferior
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projetomobile.R
+import com.example.projetomobile.domain.Tarefa
+import com.example.projetomobile.ui.home.ui.home.HomeAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomePrincipalFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomePrincipalFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var homeAdapter: HomeAdapter
+    private val tarefas = mutableListOf<Tarefa>()
+    private var lastVisible: DocumentSnapshot? = null
+    private var isLoading = false
+    private val pageSize = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_principal, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_home_principal, container, false)
+        recyclerView = view.findViewById(R.id.recycler_feed)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        homeAdapter = HomeAdapter(tarefas)
+        recyclerView.adapter = homeAdapter
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomePrincipalFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomePrincipalFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!recyclerView.canScrollVertically(1) && !isLoading) {
+                    carregarTarefas()
                 }
             }
+        })
+
+        carregarTarefas()
+
+        return view
+    }
+
+    private fun carregarTarefas() {
+        val usuarioId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        isLoading = true
+
+        val db = FirebaseFirestore.getInstance()
+        var query: Query = db.collection("Usuarios").document(usuarioId)
+            .collection("tarefas")
+            .orderBy("nome")
+            .limit(pageSize.toLong())
+
+        lastVisible?.let {
+            query = query.startAfter(it)
+        }
+
+        query.get()
+            .addOnSuccessListener { snapshot ->
+                if (!snapshot.isEmpty) {
+                    lastVisible = snapshot.documents[snapshot.size() - 1]
+                    val novasTarefas = snapshot.toObjects(Tarefa::class.java)
+                    tarefas.addAll(novasTarefas)
+                    homeAdapter.notifyDataSetChanged()
+                }
+                isLoading = false
+            }
+            .addOnFailureListener {
+                isLoading = false
+            }
+
+
+
+
     }
 }

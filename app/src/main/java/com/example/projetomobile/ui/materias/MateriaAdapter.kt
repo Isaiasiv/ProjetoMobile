@@ -53,7 +53,7 @@ class MateriaAdapter(
         private val onDeleteSuccess: () -> Unit,
         private val adapter: MateriaAdapter
     ) : RecyclerView.ViewHolder(itemView) {
-        private val textTitulo: TextView = itemView.findViewById(R.id.textViewTitulo)
+        private val textTitulo: TextView = itemView.findViewById(R.id.textViewTarefaTitulo)
         private val textDescricao: TextView = itemView.findViewById(R.id.textViewStatus)
         private val excluir: Button = itemView.findViewById(R.id.button_with_icon)
         private val usuarioId: String?

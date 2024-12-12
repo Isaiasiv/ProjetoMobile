@@ -20,6 +20,8 @@ class TarefasViewActivity : AppCompatActivity() {
     private lateinit var tarefaAdapter: TarefaAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var materiaId: String
+    private var TarefaIDpassar: String? = null
+
     private val tarefaRepository = TarefaRepository() // Adiciona a instância do repositório
     private val tarefas: MutableList<Tarefa> = mutableListOf()
 
@@ -49,22 +51,23 @@ class TarefasViewActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_ADD_TAREFA)
         }
 
+        // Configurar o clique no item do adapter
         tarefaAdapter.setOnItemClickListener { tarefa ->
+            TarefaIDpassar = tarefa.id // Salvar o ID da tarefa clicada na variável
+            Log.d("TarefasViewActivity", "Tarefa clicada com ID: $TarefaIDpassar")
+
             val intent = Intent(this, TarefaActivity::class.java)
-            intent.putExtra("materia_id", materiaId) // Passando o ID da matéria
-            intent.putExtra("tarefa_id", tarefa.id) // Passando o ID da tarefa
+            intent.putExtra("materia_id", materiaId)
+            intent.putExtra("tarefa_id", TarefaIDpassar) // Passando o ID da tarefa
             intent.putExtra("tarefa_nome", tarefa.nome)
             intent.putExtra("tarefa_titulo", tarefa.titulo)
             intent.putExtra("tarefa_status", tarefa.status)
             intent.putExtra("tarefa_descricao", tarefa.descricao)
             intent.putExtra("tarefa_objetivo", tarefa.objetivo)
-            intent.putExtra("tarefa_objetivo", tarefa.dataFim)
-            intent.putExtra("tarefa_objetivo", tarefa.dataInicio)
+            intent.putExtra("tarefa_dataFim", tarefa.dataFim)
+            intent.putExtra("tarefa_dataInicio", tarefa.dataInicio)
             startActivity(intent)
         }
-
-
-
 
     }
     companion object {
