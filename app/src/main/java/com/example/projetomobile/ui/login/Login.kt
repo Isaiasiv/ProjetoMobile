@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
 import com.example.projetomobile.domain.Verificacoes
-import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
 import com.example.projetomobile.ui.home.HomeActivity
 import com.example.projetomobile.ui.materias.AddTarefaActivity

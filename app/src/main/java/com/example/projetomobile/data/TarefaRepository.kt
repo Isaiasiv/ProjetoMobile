@@ -47,7 +47,11 @@ class TarefaRepository {
             }
     }
 
-    fun buscarTarefas(usuarioId: String, materiaId: String, callback: (List<Map<String, Any>>?, String?) -> Unit) {
+    fun buscarTarefas(
+        usuarioId: String,
+        materiaId: String,
+        callback: (List<Map<String, Any>>?, String?) -> Unit
+    ) {
         db.collection("Usuarios").document(usuarioId)
             .collection("materias").document(materiaId)
             .collection("tarefas")
@@ -67,8 +71,13 @@ class TarefaRepository {
     }
 
 
-    fun buscarUmaTarefa(usuarioId: String, materiaId: String, tarefaId: String, callback: (Map<String, Any>?, String?) -> Unit) {
-        db.collection("usuarios").document(usuarioId)
+    fun buscarUmaTarefa(
+        usuarioId: String,
+        materiaId: String,
+        tarefaId: String,
+        callback: (Map<String, Any>?, String?) -> Unit
+    ) {
+        db.collection("Usuarios").document(usuarioId)
             .collection("materias").document(materiaId)
             .collection("tarefas").document(tarefaId).get()
             .addOnSuccessListener { document ->
@@ -87,8 +96,14 @@ class TarefaRepository {
             }
     }
 
-    fun editarTarefa(usuarioId: String, materiaId: String, tarefaId: String, novoTitulo: String, callback: (Boolean, String?) -> Unit) {
-        db.collection("usuarios").document(usuarioId)
+    fun editarTarefa(
+        usuarioId: String,
+        materiaId: String,
+        tarefaId: String,
+        novoTitulo: String,
+        callback: (Boolean, String?) -> Unit
+    ) {
+        db.collection("Usuarios").document(usuarioId)
             .collection("materias").document(materiaId)
             .collection("tarefas").document(tarefaId)
             .update("titulo", novoTitulo)
@@ -102,7 +117,12 @@ class TarefaRepository {
             }
     }
 
-    fun excluirTarefa(usuarioId: String, materiaId: String, tarefaId: String, callback: (Boolean, String?) -> Unit) {
+    fun excluirTarefa(
+        usuarioId: String,
+        materiaId: String,
+        tarefaId: String,
+        callback: (Boolean, String?) -> Unit
+    ) {
         db.collection("usuarios").document(usuarioId)
             .collection("materias").document(materiaId)
             .collection("tarefas").document(tarefaId).delete()
@@ -115,4 +135,44 @@ class TarefaRepository {
                 callback(false, e.message)
             }
     }
-}
+
+        fun getAllTarefas(onComplete: (List<Tarefa>, String?) -> Unit) {
+            val usuarioId = FirebaseAuth.getInstance().currentUser?.uid
+            if (usuarioId == null) {
+                onComplete(emptyList(), "Usuário não autenticado")
+                return
+            }
+
+            val db = FirebaseFirestore.getInstance()
+            db.collection("Usuarios").document(usuarioId)
+                .collection("materias")
+                .get()
+                .addOnSuccessListener { materiasSnapshot ->
+                    val tarefas = mutableListOf<Tarefa>()
+                    var processed = 0
+                    for (materiaDoc in materiasSnapshot.documents) {
+                        val materiaId = materiaDoc.id
+                        db.collection("Usuarios").document(usuarioId)
+                            .collection("materias").document(materiaId)
+                            .collection("tarefas")
+                            .get()
+                            .addOnSuccessListener { tarefasSnapshot ->
+                                for (tarefaDoc in tarefasSnapshot.documents) {
+                                    val tarefa = tarefaDoc.toObject(Tarefa::class.java)
+                                    tarefa?.let { tarefas.add(it) }
+                                }
+                                processed++
+                                if (processed == materiasSnapshot.size()) {
+                                    onComplete(tarefas, null)
+                                }
+                            }
+                            .addOnFailureListener { e ->
+                                onComplete(emptyList(), "Erro ao buscar tarefas: ${e.message}")
+                            }
+                    }
+                }
+                .addOnFailureListener { e ->
+                    onComplete(emptyList(), "Erro ao buscar matérias: ${e.message}")
+                }
+        }
+    }

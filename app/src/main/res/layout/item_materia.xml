@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@drawable/background_cadastro"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/brackground_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
