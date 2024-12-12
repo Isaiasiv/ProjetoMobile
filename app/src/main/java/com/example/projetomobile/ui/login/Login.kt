@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.projetomobile.R
+import com.example.projetomobile.domain.Verificacoes
 import com.example.projetomobile.ui.PerfilActivity
 import com.example.projetomobile.ui.cadastro.Cadastro
 import com.example.projetomobile.ui.home.HomeActivity
@@ -39,8 +40,11 @@ class Login : AppCompatActivity() {
             insets
         }
 
+        val verificacoes = Verificacoes()
+
         buttonrecuperarSenha.setOnClickListener{
 
+            verificacoes.verificarData("16/12/2024", this, "Atividade de matematica")
 
         }
         buttonEntrar.setOnClickListener {
